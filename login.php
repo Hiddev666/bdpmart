@@ -21,8 +21,9 @@
         $queryArr = mysqli_fetch_array($query);
         if(mysqli_num_rows($query) != 0) {
             $_SESSION['name'] = $queryArr['name'];
-            if($queryArr['role'] == "admin") {
-                header("Location: gudang.php?tambah=produk");
+            $_SESSION['role'] = $queryArr['role'];
+            if($queryArr['role'] == "admin" || $queryArr['role'] == "special") {
+                header("Location: admin?barangaction=read");
             } else {
                 header("Location: invoice-view.php");
             } 

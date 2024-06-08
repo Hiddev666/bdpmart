@@ -7,7 +7,7 @@ $kode_barang = $_GET['kode_barang'];
 $kode_invoice = $_SESSION['invoice_id'];
 
 
-$querySearchCurrentJumlahBeli = mysqli_query($conn, "select transaksi.id, barang.kode_barang, barang.nama_barang, barang.owner_barang, barang.harga_barang, COUNT(barang.nama_barang) as jumlah_beli from barang inner join transaksi on barang.kode_barang = transaksi.kode_barang inner join invoice on transaksi.kode_invoice = invoice.id where invoice.id=$kode_invoice GROUP BY barang.kode_barang order by transaksi.id desc;");
+$querySearchCurrentJumlahBeli = mysqli_query($conn, "select transaksi.id, barang.kode_barang, barang.nama_barang, barang.harga_barang, COUNT(barang.nama_barang) as jumlah_beli from barang inner join transaksi on barang.kode_barang = transaksi.kode_barang inner join invoice on transaksi.kode_invoice = invoice.id where invoice.id=$kode_invoice GROUP BY barang.kode_barang order by transaksi.id desc;");
 $querySearchCurrentJumlahBeliArr = mysqli_fetch_array($querySearchCurrentJumlahBeli);
 $jumlah_beli = $querySearchCurrentJumlahBeliArr['jumlah_beli'];
 
